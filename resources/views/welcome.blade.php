@@ -1,7 +1,6 @@
 @extends('layouts.front')
 
-@section('content')
-
+@section('banner')
     <div class="jumbotron">
         <div class="container">
             <h1>Join Webdevmatics Community</h1>
@@ -11,5 +10,8 @@
             </p>
         </div>
     </div>
-
+@endsection
+@section('heading',"Threads")
+@section('content')
+    @include('thread.partials.thread-list')
 @endsection
