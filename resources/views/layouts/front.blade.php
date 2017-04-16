@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Webdev forum</title>
     <link rel="stylesheet" href="https://bootswatch.com/paper/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
 </head>
 <body>
 <div class="navbar navbar-inverse">
@@ -21,8 +22,47 @@
     </ul>
 </div>
 
+@yield('banner')
+
 <div class="container">
-    @yield('content')
+    @include('layouts.partials.error')
+    @include('layouts.partials.success')
+    <div class="row content-heading">
+        <div class="col-md-3"><h4>Category</h4></div>
+        <div class="col-md-9 ">
+            <div class="row">
+                <div class="col-md-4"><h4 class="main-content-heading">@yield('heading')</h4>
+                </div>
+                <div class="col-md-offset-6 col-md-2">
+                    <a class="btn btn-primary"  href="{{route('thread.create')}}">Create Thread</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="list-group">
+                <a href="{{route('thread.index')}}" class="list-group-item">
+                    <span class="badge">14</span>
+                    All Thread
+                </a>
+                <a href="#" class="list-group-item">
+                    <span class="badge">2</span>
+                    PHP
+                </a>
+                <a href="#" class="list-group-item">
+                    <span class="badge">1</span>
+                    Python
+                </a>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div class="content-wrap well">
+                @yield('content')
+            </div>
+        </div>
+
+    </div>
 </div>
 
 

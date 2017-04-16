@@ -1,0 +1,15 @@
+.content-heading{
+    margin-bottom:10px;
+}
+
+.main-content-heading{
+    padding:0 30px;
+}
+
+.content-wrap{
+    padding-left:20px;
+}
+
+.inline-it{
+    display: inline-block !important;
+}
