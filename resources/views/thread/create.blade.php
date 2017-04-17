@@ -28,7 +28,7 @@
                 <div class="form-group">
                     <label for="thread">Thread</label>
                     <textarea class="form-control" name="thread" id="" placeholder="Input..."
-                              value="{{old('thread')}}"> </textarea>
+                              > {{old('thread')}}</textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>

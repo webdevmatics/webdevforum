@@ -7,10 +7,11 @@
     <hr>
 
     <div class="thread-details">
-        {{$thread->thread}}
+       {!! \Michelf\Markdown::defaultTransform($thread->thread)  !!}
     </div>
     <br>
 
+@if(auth()->user()->id == $thread->user_id)
     <div class="actions">
 
         <a href="{{route('thread.edit',$thread->id)}}" class="btn btn-info btn-xs">Edit</a>
@@ -23,7 +24,7 @@
         </form>
 
     </div>
-
+@endif
 
 
 @endsection

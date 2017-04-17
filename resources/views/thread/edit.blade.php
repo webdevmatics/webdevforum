@@ -1,6 +1,8 @@
 @extends('layouts.front')
 
-@section('heading',"Edit Thread")
+@section('heading')
+    <h4>Edit Thread</h4>
+@endsection
 
 @section('content')
 
