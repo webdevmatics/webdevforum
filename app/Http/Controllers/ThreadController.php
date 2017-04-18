@@ -45,9 +45,10 @@ class ThreadController extends Controller
         //validate
 
         $this->validate($request, [
-            'subject' => 'required|min:10',
+            'subject' => 'required|min:5',
             'type'    => 'required',
-            'thread'  => 'required|min:20'
+            'thread'  => 'required|min:10',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
 
         //store
