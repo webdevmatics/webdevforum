@@ -16,6 +16,11 @@
 
 <div class="container">
 
+
+    @include('layouts.partials.error')
+
+    @include('layouts.partials.success')
+
     <div class="row">
         @section('category')
             {{--//category section--}}

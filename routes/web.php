@@ -21,3 +21,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::resource('/thread','ThreadController');
+
+Route::resource('comment','CommentController',['only'=>['update','destroy']]);
+
+Route::post('comment/create/{thread}','CommentController@addThreadComment')->name('threadcomment.store');
