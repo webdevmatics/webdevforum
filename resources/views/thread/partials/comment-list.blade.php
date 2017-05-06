@@ -1,4 +1,20 @@
-<h4>{{$comment->body}}</h4>
+<h4>{{$comment->body}} </h4>
+@if(!empty($thread->solution))
+    @if($thread->solution == $comment->id)
+        <button class="btn btn-success pull-right">Solution</button>
+    @endif
+
+@else
+    {{--//solution--}}
+    <form action="{{route('markAsSolution')}}" method="post">
+        {{csrf_field()}}
+        <input type="hidden" name="threadId" value="{{$thread->id}}">
+        <input type="hidden" name="solutionId" value="{{$comment->id}}">
+        <input type="submit" class="btn btn-success pull-right" id="{{$comment->id}}" value="Mark As Solution">
+    </form>
+
+
+@endif
 <lead>{{$comment->user->name}}</lead>
 
 <div class="actions">
@@ -46,3 +62,15 @@
     </form>
 
 </div>
+
+@section('js')
+    <script>
+        function markAsSolution(threadId, solutionId) {
+            $.post('{{route('markAsSolution')}}', {solutionId: solutionId, threadId: threadId}, function (data) {
+                console.log('success');
+            });
+        }
+
+    </script>
+
+@endsection
