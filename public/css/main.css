@@ -13,3 +13,7 @@
 .inline-it{
     display: inline-block !important;
 }
+
+.liked{
+    color:red;
+}
