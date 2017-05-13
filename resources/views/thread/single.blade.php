@@ -11,7 +11,8 @@
         </div>
         <br>
 
-        @if(auth()->user()->id == $thread->user_id)
+        {{--@if(auth()->user()->id == $thread->user_id)--}}
+        @can('update',$thread)
             <div class="actions">
 
                 <a href="{{route('thread.edit',$thread->id)}}" class="btn btn-info btn-xs">Edit</a>
@@ -24,7 +25,8 @@
                 </form>
 
             </div>
-        @endif
+        @endcan
+        {{--@endif--}}
     </div>
     <hr>
     <br>
