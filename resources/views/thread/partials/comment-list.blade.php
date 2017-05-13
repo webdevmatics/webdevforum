@@ -28,8 +28,8 @@
 
 <div class="actions">
 
-    <button class="btn btn-default btn-xs" >{{$comment->likes()->count()}}</button>
-    <button  class="btn btn-default btn-xs  {{$comment->isLiked()?"liked":""}}" onclick="likeIt('{{$comment->id}}',this)"><span class="glyphicon glyphicon-heart"></span></button>
+    <span id="{{$comment->id}}Count" class="btn btn-default btn-xs " >{{$comment->likes()->count()}}</span>
+    <span  class="btn btn-default btn-xs  {{$comment->isLiked()?"liked":""}}" onclick="likeIt('{{$comment->id}}',this)"><span class="glyphicon glyphicon-heart"></span></span>
     {{--<a href="{{route('thread.edit',$thread->id)}}" class="btn btn-info btn-xs">Edit</a>--}}
 
     <a class="btn btn-primary btn-xs" data-toggle="modal" href="#{{$comment->id}}">edit</a>
@@ -85,14 +85,18 @@
 
         function likeIt(commentId,elem){
             var csrfToken='{{csrf_token()}}';
+            var likeCountSelector=$("#"+commentId+"Count");
+            var likesCount=parseInt(likeCountSelector.text());
+
             $.post('{{route('toggleLike')}}', {commentId: commentId,_token:csrfToken}, function (data) {
                 console.log(data);
                if(data.message==='liked'){
                    $(elem).addClass('liked');
-//                   $(elem).css({color:'red'});
+                   likeCountSelector.text(likesCount+1);
                }else{
-//                   $(elem).css({color:'black'});
                     $(elem).removeClass('liked');
+                   likeCountSelector.text(likesCount-1);
+
                }
             });
 
