@@ -17,3 +17,8 @@
 .liked{
     color:red;
 }
+
+.dp img{
+	max-width: 250px;
+ max-height: 250px;
+}

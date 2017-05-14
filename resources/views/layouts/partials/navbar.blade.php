@@ -42,6 +42,10 @@
                                     Logout
                                 </a>
 
+                                <a href="{{ route('user_profile',auth()->user()) }}">
+                                    My Profile
+                                </a>
+
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>

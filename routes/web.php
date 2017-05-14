@@ -34,3 +34,4 @@ Route::post('reply/create/{comment}','CommentController@addReplyComment')->name(
 
 Route::post('comment/like','LikeController@toggleLike')->name('toggleLike');
 
+Route::get('/user/profile/{user}', 'UserProfileController@index')->name('user_profile')->middleware('auth');
