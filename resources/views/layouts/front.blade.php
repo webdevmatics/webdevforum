@@ -43,6 +43,7 @@
         crossorigin="anonymous"></script>
 <!-- Latest compiled and minified JS -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="{{asset('js/main.js')}}"></script>
 
 @yield('js')
 </body>

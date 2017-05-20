@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Notifications\RepliedToThread;
 use App\Thread;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,8 @@ class CommentController extends Controller
 //        $thread->comments()->save($comment);
 
         $thread->addComment($request->body);
+
+        $thread->user->notify(new RepliedToThread($thread));
 
         return back()->withMessage('comment created');
     }
