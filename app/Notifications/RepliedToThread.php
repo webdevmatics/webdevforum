@@ -48,7 +48,7 @@ class RepliedToThread extends Notification
     {
         return[
             'thread'=>$this->thread,
-            'user'=>$notifiable
+            'user'=>auth()->user()
         ];
     }
 
