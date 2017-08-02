@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Thread extends Model
 {
@@ -18,6 +19,11 @@ class Thread extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class,'tag_thread');
+    }
+
+    public function scopeFilter($filterQuery,ThreadFilters $threadFilters)
+    {
+        $threadFilters->apply($filterQuery);
     }
 
 }

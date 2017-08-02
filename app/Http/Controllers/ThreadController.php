@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tag;
 use App\Thread;
+use App\ThreadFilters;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -13,21 +14,19 @@ class ThreadController extends Controller
     {
         return $this->middleware('auth')->except('index');
     }
-    
-    
+
+
     /**
      * Display a listing of the resource.
      *
+     * @param ThreadFilters $filters
      * @return \Illuminate\Http\Response
+     * @internal param Request $request
      */
-    public function index(Request $request)
+    public function index(ThreadFilters $filters)
     {
-        if($request->has('tags')){
-            $tag=Tag::find($request->tags);
-            $threads=$tag->threads;
-        }else{
-            $threads = Thread::paginate(15);
-        }
+        $threads=Thread::filter($filters)->paginate(10);
+
         return view('thread.index', compact('threads'));
     }
 
@@ -59,7 +58,7 @@ class ThreadController extends Controller
         ]);
 
         //store
-        $thread=auth()->user()->threads()->create($request->all());
+        $thread = auth()->user()->threads()->create($request->all());
 
         $thread->tags()->attach($request->tags);
 
@@ -102,7 +101,7 @@ class ThreadController extends Controller
 //            abort(401,"unauthorized");
 //        }
 //
-        $this->authorize('update',$thread);
+        $this->authorize('update', $thread);
         //validate
         $this->validate($request, [
             'subject' => 'required|min:10',
@@ -128,7 +127,7 @@ class ThreadController extends Controller
 //        if(auth()->user()->id !== $thread->user_id){
 //            abort(401,"unauthorized");
 //        }
-        $this->authorize('update',$thread);
+        $this->authorize('update', $thread);
 
         $thread->delete();
 
@@ -137,17 +136,17 @@ class ThreadController extends Controller
 
     public function markAsSolution()
     {
-        $solutionId=Input::get('solutionId');
-        $threadId=Input::get('threadId');
+        $solutionId = Input::get('solutionId');
+        $threadId = Input::get('threadId');
 
-       $thread=Thread::find($threadId);
-       $thread->solution=$solutionId;
-       if($thread->save()){
-           if(request()->ajax()){
-               return response()->json(['status'=>'success','message'=>'marked as solution']);
-           }
-           return back()->withMessage('Marked as solution');
-       }
+        $thread = Thread::find($threadId);
+        $thread->solution = $solutionId;
+        if ($thread->save()) {
+            if (request()->ajax()) {
+                return response()->json(['status' => 'success', 'message' => 'marked as solution']);
+            }
+            return back()->withMessage('Marked as solution');
+        }
 
 
     }
