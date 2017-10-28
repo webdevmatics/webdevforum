@@ -16,9 +16,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
-
-        View::share('tags', Tag::all());
+         Schema::defaultStringLength(191);
+       
+        if (Schema::hasTable('tags')) 
+        {
+             View::share('tags', Tag::all());
+        }
     }
 
     /**
