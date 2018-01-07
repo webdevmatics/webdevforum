@@ -7,7 +7,13 @@ Clone repo
 Install the composer dependencies
 
 	composer install
+	
+Save .env.example as .env and put your database credentials
+
 Set application key
 
 	php artisan key:generate        
-Configure .env and migrate
+
+And Migrate with
+
+`php artisan migrate`
