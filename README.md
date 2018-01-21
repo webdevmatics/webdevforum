@@ -3,7 +3,7 @@
 
 Clone repo
 
-	git clone https://github.com/webdevmatics/ecom.git
+	git clone https://github.com/webdevmatics/webdevforum.git
 Install the composer dependencies
 
 	composer install
