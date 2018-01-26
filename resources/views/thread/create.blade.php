@@ -18,7 +18,7 @@
 
                 <div class="form-group">
                     <label for="tag">Tags</label>
-                    <select class="form-control" name="tags[]" multiple id="tag">
+                    <select name="tags[]" multiple id="tag">
                         {{-- todo add from db--}}
                         @foreach($tags as $tag)
                             <option value="{{$tag->id}}">{{$tag->name}}</option>
@@ -32,9 +32,9 @@
                     > {{old('thread')}}</textarea>
                 </div>
 
-                {{--<div class="form-group">--}}
-                    {{--{!! app('captcha')->display() !!}--}}
-                {{--</div>--}}
+                {{--  <div class="form-group">
+                   {!! app('captcha')->display() !!}
+                </div>  --}}
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

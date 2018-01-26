@@ -150,4 +150,14 @@ class ThreadController extends Controller
 
 
     }
+    public function search()
+    {
+        $query=request('query');
+
+        $threads = Thread::search($query)->with('tags')->get();
+
+        return view('thread.index', compact('threads'));
+
+
+    }
 }

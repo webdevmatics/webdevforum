@@ -7,7 +7,7 @@
 
         <ul class="dropdown-menu" role="menu">
             <li>
-                <notification-item v-for="unread in unreadNotifications" :unread="unread"></notification-item>
+                <notification-item v-for="unread in unreadNotifications" :unread="unread" :key="unread.id"></notification-item>
             </li>
         </ul>
     </li>
