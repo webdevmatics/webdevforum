@@ -12,7 +12,7 @@ class ThreadController extends Controller
 {
     function __construct()
     {
-        return $this->middleware('auth')->except('index');
+        return $this->middleware('auth')->except('index','search');
     }
 
 
