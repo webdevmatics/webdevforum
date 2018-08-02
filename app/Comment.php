@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    use CommentableTrait, LikableTrait;
+    use CommentableTrait, LikableTrait,RecordsFeed;
 
     protected $fillable=['body','user_id'];
     /**

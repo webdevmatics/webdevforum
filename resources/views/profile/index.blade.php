@@ -6,7 +6,7 @@
     <img src="https://dummyimage.com/300x200/000/fff" alt="">
     </div>
         <h3>
-            {{$user->name}}
+            {{auth()->user()->name}}
         </h3>
 
     </div>
@@ -15,26 +15,16 @@
 
 @section('content')
 <div>
-    
-    <h3>{{$user->name}}'s latest Threads</h3>
 
-    @forelse($threads as $thread)
-        <h5>{{$thread->subject}}</h5>
+    <h2>Activity Feeds</h2>
 
-    @empty
-        <h5>No threads yet</h5>
+    @foreach($feeds as $feed)
 
-    @endforelse
-    <br>
-    <hr>
+        @include("feeds.$feed->type")
 
-    <h3>{{$user->name}}'s latest Comments</h3>
 
-    @forelse($comments as $comment)
-        <h5>{{$user->name}} commented on <a href="{{route('thread.show',$comment->commentable->id)}}">{{$comment->commentable->subject}}</a>  {{$comment->created_at->diffForHumans()}}</h5>
-    @empty
-    <h5>No comments yet</h5>
-    @endforelse
+    @endforeach
+
 </div>
 
 @endsection
